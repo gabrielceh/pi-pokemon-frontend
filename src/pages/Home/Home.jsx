@@ -90,7 +90,7 @@ function Home() {
 
 				{loading && <LoadingPage />}
 
-				{!loading && pokemonHome.data.length && (
+				{pokemonHome.data.length ? (
 					<>
 						<Cards data={pokemonHome.data} />
 
@@ -106,11 +106,13 @@ function Home() {
 							orderPag={pokemonHome.orderPag}
 						/>
 					</>
+				) : (
+					<MessageContainer>
+						<h2>No Results</h2>
+					</MessageContainer>
 				)}
 
 				<MessageContainer>
-					{!loading && !pokemonHome.data.length && <h2>No Results</h2>}
-
 					{!loading && apiError.error && <h2>{apiError.error}</h2>}
 				</MessageContainer>
 			</ContainerStyled>
