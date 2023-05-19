@@ -9,6 +9,9 @@ export const PagContainer = styled.div`
 
 export const BtnPag = styled.button`
 	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	outline: none;
 	background-color: transparent;
 	color: ${({ theme }) => theme.colors.darkBlue['400']};

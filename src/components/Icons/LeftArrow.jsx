@@ -8,14 +8,14 @@ const LeftArrow = (props) => (
 		strokeLinecap='round'
 		strokeLinejoin='round'
 		strokeWidth={1.5}
-		className='icon icon-tabler icon-tabler-arrow-badge-left'
+		className='icon icon-tabler icon-tabler-chevron-left'
 		viewBox='0 0 24 24'
 		{...props}>
 		<path
 			stroke='none'
 			d='M0 0h24v24H0z'
 		/>
-		<path d='M11 17h6l-4-5 4-5h-6l-4 5z' />
+		<path d='m15 6-6 6 6 6' />
 	</svg>
 );
 export default LeftArrow;

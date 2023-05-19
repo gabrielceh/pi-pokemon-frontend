@@ -3,6 +3,8 @@ import ButtonPagination from './ButtonPagination';
 import RightArrow from '../Icons/RightArrow';
 import LeftArrow from '../Icons/LeftArrow';
 import { ButtonsNumbers, PagContainer } from './Pagination.styled';
+import ArrowFirst from '../Icons/ArrowFirst';
+import ArrowLast from '../Icons/ArrowLast';
 
 // eslint-disable-next-line react/prop-types
 function Pagination({
@@ -70,7 +72,7 @@ function Pagination({
 		<PagContainer className='pagination'>
 			<ButtonPagination
 				handleClick={() => handleClick(1)}
-				label='1...'
+				label={<ArrowFirst />}
 			/>
 			<ButtonPagination
 				handleClick={() => handleClick(currentPage - 1)}
@@ -85,7 +87,7 @@ function Pagination({
 			/>
 			<ButtonPagination
 				handleClick={() => handleClick(totalPages)}
-				label={`...${totalPages}`}
+				label={<ArrowLast />}
 			/>
 		</PagContainer>
 	);
