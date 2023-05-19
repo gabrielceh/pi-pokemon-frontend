@@ -40,7 +40,7 @@ function RegisterForm() {
 		if (user.access) {
 			return navigate(ROUTES_NAMES.LOGIN);
 		}
-	}, [user]);
+	}, [user.access]);
 
 	const handleInputChange = (event) => {
 		const name = event.target.name;

@@ -87,14 +87,13 @@ function Home() {
 						/>
 					</SelectsCont>
 				</OptionsContainer>
-			</ContainerStyled>
 
-			{loading && <LoadingPage />}
+				{loading && <LoadingPage />}
 
-			{!loading && pokemonHome.data.length && (
-				<>
-					<Cards data={pokemonHome.data} />
-					<ContainerStyled>
+				{!loading && pokemonHome.data.length && (
+					<>
+						<Cards data={pokemonHome.data} />
+
 						<Pagination
 							count={pokemonHome.count}
 							limit={pokemonHome.limit}
@@ -106,11 +105,9 @@ function Home() {
 							endpoint={pokemonHome.endPointPag}
 							orderPag={pokemonHome.orderPag}
 						/>
-					</ContainerStyled>
-				</>
-			)}
+					</>
+				)}
 
-			<ContainerStyled>
 				<MessageContainer>
 					{!loading && !pokemonHome.data.length && <h2>No Results</h2>}
 

@@ -4,6 +4,7 @@ import { loaderOff, loaderOn } from './loading.actions';
 import { base, endpoints } from '../../utils/endpoints';
 
 export const GET_USER_POKEMON = 'GET_USER_POKEMON';
+export const NEXT_GET_USER_POKEMON = 'NEXT_GET_USER_POKEMON';
 export const UPDATE_USER_POKEMON = 'UPDATE_USER_POKEMON';
 export const CREATE_USER_POKEMON = 'CREATE_USER_POKEMON';
 export const DELETE_USER_POKEMON = 'DELETE_USER_POKEMON';
@@ -57,7 +58,6 @@ export const createUserPokemon = (pokemon) => {
 				payload: data.new_pokemon,
 			});
 		} catch (error) {
-			console.log('user.actions error:', error);
 			dispatch(apiErrorSet(error.response.data.error));
 		} finally {
 			dispatch(loaderOff());
@@ -90,8 +90,6 @@ export const updateUserPokemon = (pokemon) => {
 			headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
 		};
 
-		console.log(token);
-
 		try {
 			const { data } = await axios.put(`${base}/${endpoints.pokemon}`, dataBody, config);
 			dispatch({
@@ -99,7 +97,6 @@ export const updateUserPokemon = (pokemon) => {
 				payload: data.pokemon,
 			});
 		} catch (error) {
-			console.log('user.actions error:', error);
 			dispatch(apiErrorSet(error.response.data.error));
 		} finally {
 			dispatch(loaderOff());
@@ -134,5 +131,23 @@ export const deleteUserPokemon = (pokemonId) => {
 export const resetSuccessPokemonUser = () => {
 	return {
 		type: RESET_SUCCESS_USER_POKEMON,
+	};
+};
+
+export const nextGetUserPokemon = (url) => {
+	return async function (dispatch) {
+		dispatch(loaderOn());
+
+		try {
+			const { data } = await axios.get(url);
+			dispatch({
+				type: NEXT_GET_USER_POKEMON,
+				payload: data,
+			});
+		} catch (error) {
+			dispatch(apiErrorSet(error.response.data.error));
+		} finally {
+			dispatch(loaderOff());
+		}
 	};
 };

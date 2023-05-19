@@ -31,8 +31,26 @@ function Pagination({
 
 	const renderPageNumbers = () => {
 		const pageNumbers = [];
+		const maxVisible = 5;
 
-		for (let i = 1; i <= totalPages; i++) {
+		let startPage = 1;
+		let lastPage = totalPages;
+
+		if (totalPages > maxVisible) {
+			// si current page esta mas  cerca de las paginas iniciales(1,2)
+			if (currentPage <= Math.ceil(maxVisible / 2)) {
+				lastPage = maxVisible;
+			}
+			// si current page esta mas  cerca de las paginas finales
+			else if (currentPage >= totalPages - Math.floor(maxVisible / 2)) {
+				startPage = totalPages - maxVisible + 1;
+			} else {
+				startPage = currentPage - Math.floor(maxVisible / 2);
+				lastPage = currentPage + Math.floor(maxVisible / 2);
+			}
+		}
+
+		for (let i = startPage; i <= lastPage; i++) {
 			pageNumbers.push(
 				<ButtonsNumbers
 					key={i}

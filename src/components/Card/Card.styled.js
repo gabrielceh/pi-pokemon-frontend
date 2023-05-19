@@ -12,7 +12,7 @@ export const CardContainer = styled.div`
 	cursor: pointer;
 	position: relative;
 	width: 100%;
-	height: 100px;
+	height: 125px;
 	margin: 0 auto;
 	padding: 1rem 2rem;
 	border: ${({ theme }) => `2px solid ${theme.colors.darkBlue['200']}`};

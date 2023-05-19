@@ -3,7 +3,7 @@ import { createContext, useState } from 'react';
 
 export const ToastContext = createContext();
 
-const ToastProvider = ({ children }) => {
+export const ToastProvider = ({ children }) => {
 	const [toastList, setToastList] = useState([]);
 
 	const addToast = (toast = { title: '', description: '', type: '' }) => {
@@ -26,5 +26,3 @@ const ToastProvider = ({ children }) => {
 
 	return <ToastContext.Provider value={data}>{children}</ToastContext.Provider>;
 };
-
-export default ToastProvider;

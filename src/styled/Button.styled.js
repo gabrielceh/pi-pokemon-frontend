@@ -96,3 +96,24 @@ export const ButtonCard = styled.button`
 		stroke: ${({ theme, type }) => theme.pokemonColors[type].medium};
 	}
 `;
+
+export const ButtonMore = styled.button`
+	cursor: pointer;
+	background-color: transparent;
+	color: ${({ theme }) => theme.colors.darkBlue['600']};
+	padding: 0.3rem 0.5rem;
+	font-size: ${({ theme }) => theme.fontSize.lg};
+	border: ${({ theme }) => `1px solid ${theme.colors.darkBlue['400']}`};
+	border-radius: 5px;
+	transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+
+	&:hover {
+		background-color: ${({ theme }) => theme.colors.darkBlue['400']};
+		color: ${({ theme }) => theme.colors.darkBlue['50']};
+	}
+
+	&:disabled {
+		background-color: ${({ theme }) => theme.colors.slate['400']};
+		color: ${({ theme }) => theme.colors.slate['200']};
+	}
+`;

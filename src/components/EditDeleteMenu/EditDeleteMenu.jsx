@@ -19,7 +19,6 @@ function EditDeleteMenu({ pokemonId, pokemonName }) {
 	const [isOpenDelete, openModalDelete, closeModalDelete] = useModal();
 
 	useEffect(() => {
-		console.log(pokemonId);
 		return () => {
 			dispatch(apiErrorReset());
 			dispatch(resetSuccessPokemonUser());

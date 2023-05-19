@@ -28,7 +28,6 @@ function EditForm({ formPokemon, closeModal }) {
 	const loading = useSelector((state) => state.loading);
 
 	useEffect(() => {
-		console.log(apiError);
 		if (!apiError.error) {
 			return;
 		}
@@ -44,7 +43,6 @@ function EditForm({ formPokemon, closeModal }) {
 	}, [pokemonUser]);
 
 	useEffect(() => {
-		console.log(formPokemon);
 		seturlImageToShow(formPokemon.image);
 		if (!typesPokemon.length) {
 			dispatch(getTypes());
@@ -64,8 +62,6 @@ function EditForm({ formPokemon, closeModal }) {
 			...form,
 			[nameInput]: value,
 		});
-		console.log(errors);
-		console.log(form);
 		setErrors(
 			validateEdit({
 				...form,

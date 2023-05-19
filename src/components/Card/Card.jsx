@@ -48,7 +48,6 @@ function Card({ pokemon = {}, onClose = null }) {
 	};
 
 	const handleEdit = (event) => {
-		console.log(event.target.classList.contains('edit-icon'));
 		event.preventDefault();
 		event.stopPropagation();
 

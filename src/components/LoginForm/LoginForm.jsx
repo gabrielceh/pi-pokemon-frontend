@@ -32,7 +32,6 @@ function LoginForm() {
 
 	useEffect(() => {
 		if (user.access) {
-			console.log('success');
 			return navigate(ROUTES_NAMES.HOME);
 		}
 	}, [user]);

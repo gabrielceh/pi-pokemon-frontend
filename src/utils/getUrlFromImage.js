@@ -11,5 +11,6 @@ export const getUrlFromImage = async (base64Image) => {
 		return data.data.display_url;
 	} catch (error) {
 		console.log(error);
+		return null;
 	}
 };

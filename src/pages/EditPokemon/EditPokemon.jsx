@@ -37,7 +37,6 @@ function EditPokemon() {
 					weight: data.weight || '',
 					types: data.Types.map((item) => item.id),
 				};
-				console.log(data);
 				setPokemon(pokemon);
 				if (!typesPokemon.length) {
 					dispatch(getTypes());

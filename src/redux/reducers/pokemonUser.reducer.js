@@ -4,6 +4,7 @@ import {
 	GET_USER_POKEMON,
 	UPDATE_USER_POKEMON,
 	RESET_SUCCESS_USER_POKEMON,
+	NEXT_GET_USER_POKEMON,
 } from '../actions/pokemonUser.action';
 
 const initialState = {
@@ -59,6 +60,13 @@ export const pokemonUserReducer = (state = initialState, action) => {
 			return {
 				...state,
 				success: null,
+			};
+		}
+
+		case NEXT_GET_USER_POKEMON: {
+			return {
+				...action.payload,
+				results: [...state.results, ...action.payload.results],
 			};
 		}
 

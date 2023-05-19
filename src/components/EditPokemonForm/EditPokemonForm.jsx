@@ -127,7 +127,6 @@ function EditPokemonForm({ formPokemon, typesPokemon }) {
 
 		let getUrl = '';
 		if (urlImageToShow && formImage.value) {
-			console.log('go');
 			getUrl = await getUrlFromImage(urlImageToShow);
 		}
 

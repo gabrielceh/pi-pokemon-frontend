@@ -52,6 +52,18 @@ function App() {
 	}, [pokemonUser]);
 
 	useEffect(() => {
+		if (!user?.success) {
+			return;
+		}
+		addToast({
+			title: 'Success',
+			description: user.success,
+			type: 'success',
+		});
+		dispatch(resetSuccessPokemonUser());
+	}, [user.success]);
+
+	useEffect(() => {
 		// if (user.access) return;
 
 		const auth_token = localStorage.getItem('auth_token');

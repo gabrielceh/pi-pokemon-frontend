@@ -3,7 +3,7 @@ import { createContext, useEffect, useState } from 'react';
 
 export const DarkModeContext = createContext();
 
-function DarkModeProvider({ children }) {
+export function DarkModeProvider({ children }) {
 	const [darkMode, setDarkMode] = useState('light');
 
 	useEffect(() => {
@@ -24,5 +24,3 @@ function DarkModeProvider({ children }) {
 
 	return <DarkModeContext.Provider value={data}>{children}</DarkModeContext.Provider>;
 }
-
-export default DarkModeProvider;

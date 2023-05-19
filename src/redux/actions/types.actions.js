@@ -16,7 +16,6 @@ export const getTypes = () => {
 				payload: data,
 			});
 		} catch (error) {
-			console.log('user.actions error:', error);
 			dispatch(apiErrorSet(error.response.data.error));
 		} finally {
 			dispatch(loaderOff());
