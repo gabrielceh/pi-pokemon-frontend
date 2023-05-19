@@ -1,4 +1,7 @@
-export const base = 'http://localhost:3001/pokemon-api';
+export const base =
+	import.meta.env.VITE_ENVIROMENT === 'development'
+		? 'http://localhost:3001/pokemon-api'
+		: 'https://pi-pokemon-backend-production.up.railway.app';
 
 export const endpoints = {
 	pokemon: `pokemon`,
