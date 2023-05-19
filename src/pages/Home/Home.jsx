@@ -31,6 +31,8 @@ function Home() {
 
 	useEffect(() => {
 		fetchPokemonList(`${base}/${pokemonHome.endPointPag}`);
+		window.scrollTo(0, 0);
+
 		return () => {
 			dispatch(apiErrorReset());
 		};

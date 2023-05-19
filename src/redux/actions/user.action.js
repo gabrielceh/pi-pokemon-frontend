@@ -28,7 +28,6 @@ export const login = (userData) => {
 				payload: data,
 			});
 		} catch (error) {
-			console.log('user.actions error:', error);
 			dispatch(apiErrorSet(error.response.data.error));
 		} finally {
 			dispatch(loaderOff());
@@ -49,13 +48,11 @@ export const registerUser = (userData) => {
 		};
 		try {
 			const { data } = await axios.post(`${endpoints.register}`, options);
-			console.log(data);
 			dispatch({
 				type: REGISTER,
 				payload: data,
 			});
 		} catch (error) {
-			console.log('user.actions error:', error);
 			dispatch(apiErrorSet(error.response.data.error));
 		} finally {
 			dispatch(loaderOff());
@@ -78,7 +75,6 @@ export const logout = () => {
 			localStorage.removeItem('auth_token');
 			window.location.reload();
 		} catch (error) {
-			console.log('user.actions error:', error);
 			dispatch(apiErrorSet(error.response?.data?.error));
 		} finally {
 			dispatch(loaderOff());

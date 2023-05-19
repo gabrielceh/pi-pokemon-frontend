@@ -23,6 +23,7 @@ export const userReducer = (state = initialState, action) => {
 		case REGISTER:
 			return {
 				...action.payload,
+				success: 'Successful registration',
 			};
 
 		case SET_USER_BY_LOCAL: {
