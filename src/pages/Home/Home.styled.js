@@ -20,3 +20,8 @@ export const SelectsCont = styled.div`
 	align-items: flex-start;
 	gap: 1rem;
 `;
+
+export const MessageContainer = styled.div`
+	margin-top: 2rem;
+	text-align: center;
+`;

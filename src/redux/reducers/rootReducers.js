@@ -4,6 +4,7 @@ import { loaderReducer } from './loading.reducer';
 import { userReducer } from './user.reducer';
 import { typesReducer } from './types.reducer';
 import { pokemonUserReducer } from './pokemonUser.reducer';
+import { pokemonHomeReducer } from './pokemonHome.reducer';
 
 const rootReducer = combineReducers({
 	loading: loaderReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
 	user: userReducer,
 	typesPokemon: typesReducer,
 	pokemonUser: pokemonUserReducer,
+	pokemonHome: pokemonHomeReducer,
 });
 
 export { rootReducer };

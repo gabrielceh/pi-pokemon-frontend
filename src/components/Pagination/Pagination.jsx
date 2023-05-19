@@ -1,35 +1,31 @@
 /* eslint-disable react/prop-types */
 import ButtonPagination from './ButtonPagination';
-import { base } from '../../utils/endpoints';
 import RightArrow from '../Icons/RightArrow';
 import LeftArrow from '../Icons/LeftArrow';
 import { ButtonsNumbers, PagContainer } from './Pagination.styled';
 
 // eslint-disable-next-line react/prop-types
 function Pagination({
-	fetch,
 	count,
 	limit,
 	next,
 	prev,
 	currentPage,
 	setCurrentPage,
+	setEndPontPag,
 	endpoint = {},
 	orderPag = null,
 }) {
 	const totalPages = Math.ceil(count / limit);
-
-	const goToPage = (url) => {
-		fetch(url);
-	};
 
 	const handleClick = (index) => {
 		const orderString = orderPag
 			? `&orderby=${orderPag?.orderby}&ordertype=${orderPag?.ordertype}`
 			: '';
 
-		let url = `${base}/${endpoint}?offset=${(index - 1) * limit}&limit=${limit}${orderString}`;
-		goToPage(url);
+		const endpointSplited = endpoint.split('?')[0];
+
+		setEndPontPag(`${endpointSplited}?offset=${(index - 1) * limit}&limit=${limit}${orderString}`);
 		setCurrentPage(index);
 	};
 

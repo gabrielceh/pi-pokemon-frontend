@@ -1,75 +1,65 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { loaderOn, loaderOff } from '../../redux/actions/loading.actions';
-import { apiErrorSet, apiErrorReset } from '../../redux/actions/apieError.actions';
-import { base, endpoints } from '../../utils/endpoints';
-
-import Pagination from '../../components/Pagination/Pagination';
+import { apiErrorReset } from '../../redux/actions/apieError.actions';
+import { base } from '../../utils/endpoints';
 import Cards from '../../components/Cards/Cards';
+import { ContainerPage, ContainerStyled } from '../../styled/Container.styled';
+import { MessageContainer, OptionsContainer, SelectsCont } from './Home.styled';
+import LoadingPage from '../../components/Loading/LoadingPage';
 import OrderSelect from '../../components/OrderSelect/OrderSelect';
 import FilterSelect from '../../components/FilterSelect/FilterSelect';
 import OriginSelect from '../../components/OriginSelect/OriginSelect';
-import { ContainerPage, ContainerStyled } from '../../styled/Container.styled';
-import { OptionsContainer, SelectsCont } from './Home.styled';
-import LoadingPage from '../../components/Loading/LoadingPage';
+import Pagination from '../../components/Pagination/Pagination';
+import {
+	getPokemonHome,
+	setCurrenPageHome,
+	setOrderPagHome,
+	resetOrderHome,
+	setEndpointHome,
+} from '../../redux/actions/pokemonHome.action';
 
 function Home() {
-	const [data, setData] = useState([]);
-	const [count, setCount] = useState(0);
-	const [next, setNext] = useState(null);
-	const [prev, setPrev] = useState(null);
-	const [endPointPag, setEndPontPag] = useState(endpoints.pokemon);
-	const [orderPag, setOrderPag] = useState(null);
-	const [currentPage, setCurrentPage] = useState(1);
-
-	const limit = 12;
-
 	const loading = useSelector((state) => state.loading);
 	const apiError = useSelector((state) => state.apiError);
+	const pokemonHome = useSelector((state) => state.pokemonHome);
 	const dispatch = useDispatch();
 
 	const fetchPokemonList = async (url) => {
-		dispatch(loaderOn());
-		setData([]);
-		try {
-			const { data } = await axios.get(url);
-			setData(data.results);
-			setCount(data.count);
-			setNext(data.next);
-			setPrev(data.prev);
-		} catch (error) {
-			dispatch(apiErrorSet(error.response.data.error));
-		} finally {
-			dispatch(loaderOff());
-		}
+		dispatch(getPokemonHome(url));
 	};
 
 	useEffect(() => {
-		fetchPokemonList(`${base}/${endPointPag}`);
+		fetchPokemonList(`${base}/${pokemonHome.endPointPag}`);
 		return () => {
 			dispatch(apiErrorReset());
 		};
-	}, [endPointPag]);
+	}, [pokemonHome.endPointPag]);
 
 	const handleOrder = (orderby, ordertype) => {
-		setOrderPag({
-			orderby,
-			ordertype,
-		});
-		setCurrentPage(1);
-		const pag = `?offset=0&limit=${limit}`;
-		fetchPokemonList(`${base}/${endPointPag}/${pag}&orderby=${orderby}&ordertype=${ordertype}`);
+		dispatch(setOrderPagHome(orderby, ordertype));
+		dispatch(setCurrenPageHome(1));
+		const endpointSplited = pokemonHome.endPointPag.split('?')[0];
+		const pag = `?offset=0&limit=${pokemonHome.limit}`;
+		dispatch(setEndpointHome(`${endpointSplited}${pag}&orderby=${orderby}&ordertype=${ordertype}`));
 	};
 
 	const resetOrder = () => {
-		if (orderPag) {
-			setOrderPag(null);
-			setCurrentPage(1);
-			const pag = `?offset=0&limit=${limit}`;
-			fetchPokemonList(`${base}/${endPointPag}/${pag}`);
+		if (pokemonHome.orderPag) {
+			dispatch(resetOrderHome());
+			dispatch(setCurrenPageHome(1));
+			const pag = `?offset=0&limit=${pokemonHome.limit}`;
+			const endpointSplited = pokemonHome.endPointPag.split('?')[0];
+			dispatch(setEndpointHome(`${endpointSplited}${pag}`));
 		}
+	};
+
+	const handleSetCurrentPage = (current) => {
+		dispatch(setCurrenPageHome(current));
+	};
+
+	const handleSetEndpointPage = (endpoint) => {
+		dispatch(setEndpointHome(endpoint));
 	};
 
 	return (
@@ -79,19 +69,19 @@ function Home() {
 					<OrderSelect
 						handleOrder={handleOrder}
 						resetOrder={resetOrder}
-						orderPag={orderPag}
+						orderPag={pokemonHome.orderPag}
 					/>
 					<SelectsCont>
 						<FilterSelect
-							setEnpoint={setEndPontPag}
-							setCurrentPage={setCurrentPage}
-							setOrderPag={setOrderPag}
+							setEnpoint={handleSetEndpointPage}
+							setCurrentPage={handleSetCurrentPage}
+							setOrderPag={resetOrder}
 						/>
 
 						<OriginSelect
-							setCurrentPage={setCurrentPage}
-							setEnpoint={setEndPontPag}
-							setOrderPag={setOrderPag}
+							setCurrentPage={handleSetCurrentPage}
+							setEnpoint={handleSetEndpointPage}
+							setOrderPag={resetOrder}
 						/>
 					</SelectsCont>
 				</OptionsContainer>
@@ -99,34 +89,32 @@ function Home() {
 
 			{loading && <LoadingPage />}
 
-			{data.length && (
+			{!loading && pokemonHome.data.length && (
 				<>
-					<Cards data={data} />
+					<Cards data={pokemonHome.data} />
 					<ContainerStyled>
 						<Pagination
-							fetch={fetchPokemonList}
-							count={count}
-							results={data}
-							endpoint={endPointPag}
-							orderPag={orderPag}
-							setEndPontPag={setEndPontPag}
-							limit={limit}
-							next={next}
-							prev={prev}
-							currentPage={currentPage}
-							setCurrentPage={setCurrentPage}
+							count={pokemonHome.count}
+							limit={pokemonHome.limit}
+							next={pokemonHome.next}
+							prev={pokemonHome.prev}
+							currentPage={pokemonHome.currentPage}
+							setCurrentPage={handleSetCurrentPage}
+							setEndPontPag={handleSetEndpointPage}
+							endpoint={pokemonHome.endPointPag}
+							orderPag={pokemonHome.orderPag}
 						/>
 					</ContainerStyled>
 				</>
 			)}
 
-			{!data.length && <h2>No Results</h2>}
+			<ContainerStyled>
+				<MessageContainer>
+					{!loading && !pokemonHome.data.length && <h2>No Results</h2>}
 
-			{apiError.error && (
-				<ContainerStyled>
-					<h2>{apiError.error}</h2>
-				</ContainerStyled>
-			)}
+					{!loading && apiError.error && <h2>{apiError.error}</h2>}
+				</MessageContainer>
+			</ContainerStyled>
 		</ContainerPage>
 	);
 }

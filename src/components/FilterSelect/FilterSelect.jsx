@@ -11,7 +11,7 @@ import { Form, LabelGroup, Select } from '../../styled/HeaderHome.js';
 function FilterSelect({ setEnpoint, setCurrentPage, setOrderPag }) {
 	const [dataSelect, setDataSelect] = useState([]);
 	const [form, setForm] = useState({
-		type: 'all',
+		type: '',
 	});
 
 	const dispatch = useDispatch();
@@ -37,6 +37,9 @@ function FilterSelect({ setEnpoint, setCurrentPage, setOrderPag }) {
 	}, []);
 
 	const handleChange = (event) => {
+		if (event.target.value === '') {
+			return;
+		}
 		const value = event.target.value;
 		setForm({
 			type: value,
@@ -62,6 +65,7 @@ function FilterSelect({ setEnpoint, setCurrentPage, setOrderPag }) {
 						id=''
 						onChange={handleChange}
 						defaultValue={form.type}>
+						<option value=''>---SELECT---</option>
 						<option value='all'>All types</option>
 						{dataSelect.map((type) => (
 							<option
