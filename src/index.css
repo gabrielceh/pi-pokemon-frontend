@@ -1,0 +1,233 @@
+@font-face {
+	font-family: 'McLaren';
+	src: url('./assets/fonts/McLaren-Regular.ttf');
+}
+@font-face {
+	font-family: 'Varta';
+	src: url('./assets/fonts/Varta-VariableFont_wght.ttf');
+}
+
+:root {
+	font-size: 16px;
+}
+
+body,
+html {
+	font-family: 'Varta', sans-serif;
+	margin: 0;
+	scroll-behavior: smooth;
+	overflow-x: hidden;
+}
+
+* {
+	font-family: 'Varta', sans-serif;
+	box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'McLaren', sans-serif;
+	margin: 0;
+}
+
+input {
+	font-family: 'Varta', sans-serif;
+	font-weight: 500;
+}
+
+.notification-container {
+	font-size: 14px;
+	box-sizing: border-box;
+	position: fixed;
+	z-index: 10;
+	width: fit-content;
+	height: fit-content;
+}
+
+.notification-container.top-right {
+	top: 24px;
+	right: 24px;
+	transition: transform 0.6s ease-in-out;
+	animation: toast-in-right 0.7s;
+}
+
+.notification-container.bottom-right {
+	bottom: 24px;
+	right: 24px;
+	transition: transform 0.6s ease-in-out;
+	animation: toast-in-right 0.7s;
+}
+
+.notification-container.top-left {
+	top: 24px;
+	left: 24px;
+	transition: transform 0.6s ease-in;
+	animation: toast-in-left 0.7s;
+}
+
+.notification-container.bottom-left {
+	bottom: 24px;
+	left: 24px;
+}
+.notification-container.top-center {
+	top: 24px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.animation-move-up {
+	animation-name: animation-move-up;
+	animation-timing-function: ease-in-out;
+	animation-duration: 0.7s;
+	animation-iteration-count: 1;
+	animation-fill-mode: backwards;
+}
+
+@keyframes animation-move-up {
+	0% {
+		opacity: 0;
+		translate: 0 20px;
+	}
+
+	100% {
+		opacity: 1;
+		translate: 0 0;
+	}
+}
+
+.animation-height {
+	animation-name: animation-height;
+	animation-timing-function: ease-in-out;
+	animation-duration: 0.3s;
+	animation-iteration-count: 1;
+	animation-fill-mode: backwards;
+}
+
+@keyframes animation-height {
+	0% {
+		opacity: 0;
+		translate: 0 20px;
+		height: 0;
+	}
+
+	100% {
+		opacity: 1;
+		translate: 0 0;
+		height: 100;
+	}
+}
+
+.animation-width {
+	animation-name: animation-width;
+	animation-timing-function: ease-in-out;
+	animation-duration: 0.3s;
+	animation-iteration-count: 1;
+	animation-fill-mode: backwards;
+}
+
+@keyframes animation-width {
+	0% {
+		opacity: 0;
+		translate: 0 20px;
+		width: 0;
+	}
+
+	100% {
+		opacity: 1;
+		translate: 0 0;
+		width: 100;
+	}
+}
+
+.animation-bounce-in {
+	animation: bounce-in 0.7s ease 1;
+}
+@keyframes bounce-in {
+	0% {
+		opacity: 0;
+		transform: scale(0.3);
+	}
+	50% {
+		opacity: 1;
+		transform: scale(1.05);
+	}
+	70% {
+		transform: scale(0.9);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+.animation-fade-in {
+	animation: fade-in 0.5s linear 1;
+}
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.animation-gelatine {
+	animation: gelatine 0.5s 1;
+}
+@keyframes gelatine {
+	from,
+	to {
+		transform: scale(1, 1);
+	}
+	25% {
+		transform: scale(0.9, 1.1);
+	}
+	50% {
+		transform: scale(1.1, 0.9);
+	}
+	75% {
+		transform: scale(0.95, 1.05);
+	}
+}
+.animation-gelatine-2 {
+	animation: gelatine-2 0.5s 1;
+}
+@keyframes gelatine-2 {
+	from,
+	to {
+		transform: scale(1, 1);
+	}
+	25% {
+		transform: scale(0.9, 1.1);
+	}
+	50% {
+		transform: scale(1.1, 0.9);
+	}
+	75% {
+		transform: scale(0.95, 1.05);
+	}
+}
+
+.animation-bounce-in-2 {
+	animation: bounce-in-2 1.5s ease 1;
+}
+@keyframes bounce-in-2 {
+	0% {
+		opacity: 0;
+		transform: scale(0.3);
+	}
+	50% {
+		opacity: 1;
+		transform: scale(1.05);
+	}
+	70% {
+		transform: scale(0.9);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
