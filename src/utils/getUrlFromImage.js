@@ -3,7 +3,7 @@ export const getUrlFromImage = async (base64Image) => {
 		const formData = new FormData();
 		formData.append('image', base64Image.split(',')[1]);
 
-		const res = await fetch(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMBB_KEY}`, {
+		const res = await fetch(`https://api.imgbb.com/1/upload?key=93b72cbcace6c6891f7378674d194292`, {
 			method: 'POST',
 			body: formData,
 		});
