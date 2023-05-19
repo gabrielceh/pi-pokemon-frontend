@@ -30,6 +30,7 @@ export const Name = styled.h3`
 export const ImgCard = styled.img`
 	width: 150px;
 	height: 150px;
+	object-fit: contain;
 	position: absolute;
 	bottom: 4%;
 	right: 4%;
@@ -50,16 +51,4 @@ export const ImgTypes = styled.img`
 	z-index: 1;
 	width: 50px;
 	height: 50px;
-`;
-
-export const UserContainer = styled.div`
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: flex-start;
-`;
-
-export const UserSpan = styled.span`
-	color: ${({ theme }) => theme.colors.slate['500']};
 `;

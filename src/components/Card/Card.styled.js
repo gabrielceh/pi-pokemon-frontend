@@ -63,8 +63,14 @@ export const UserContainer = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+
+	&.mobile {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
 `;
 
 export const UserSpan = styled.span`
-	color: ${({ theme }) => theme.colors.slate['300']};
+	color: ${({ theme }) => theme.colors.slate['500']};
 `;
