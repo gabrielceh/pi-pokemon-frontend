@@ -51,7 +51,7 @@ function Profile() {
 				</UserHeader>
 
 				{loading && <LoadingPage />}
-				{/* {!loading && pokemonUser.results.length && (
+				{!loading && pokemonUser.results.length && (
 					<>
 						<Cards data={pokemonUser.results} />
 						{pokemonUser.next && (
@@ -62,7 +62,7 @@ function Profile() {
 							</ButtonMore>
 						)}
 					</>
-				)} */}
+				)}
 				{!loading && !pokemonUser.results.length && <h2>No Pokemon yet</h2>}
 			</ContainerStyled>
 		</ContainerPage>
