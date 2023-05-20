@@ -10,7 +10,7 @@ const imageTypes = (type) => {
 		'image/webp': 'webp',
 	};
 
-	return types.hasOwnProperty(type);
+	return Object.hasOwnProperty.call(types, type);
 };
 
 const validateLoginForm = (form) => {

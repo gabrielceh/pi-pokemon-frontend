@@ -79,6 +79,12 @@ function FormCreate() {
 
 		for (let i = 0; i < options.length; i++) {
 			if (value.length > 2) {
+				setErrors(
+					validateCreateForm({
+						...form,
+						types: [...value],
+					})
+				);
 				return;
 			}
 			if (options[i].selected) {
@@ -86,7 +92,6 @@ function FormCreate() {
 				value.push(v);
 			}
 		}
-
 		setForm({
 			...form,
 			types: value,
@@ -94,7 +99,7 @@ function FormCreate() {
 		setErrors(
 			validateCreateForm({
 				...form,
-				types: value,
+				types: [...value],
 			})
 		);
 	};

@@ -74,7 +74,12 @@ function EditPokemonForm({ formPokemon, typesPokemon }) {
 
 		for (let i = 0; i < options.length; i++) {
 			if (value.length > 2) {
-				return;
+				setErrors(
+					validateEdit({
+						...form,
+						types: value,
+					})
+				);
 			}
 			if (options[i].selected) {
 				const v = parseInt(options[i].value);
