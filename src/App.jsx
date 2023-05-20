@@ -17,7 +17,7 @@ import jwt_decode from 'jwt-decode';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout, setUserByLocal } from './redux/actions/user.action';
 import { ThemeProvider } from 'styled-components';
-import { resetSuccessPokemonUser } from './redux/actions/pokemonUser.action';
+import { getUserPokemon, resetSuccessPokemonUser } from './redux/actions/pokemonUser.action';
 
 function App() {
 	const { darkMode } = useContext(DarkModeContext);
@@ -84,6 +84,7 @@ function App() {
 					authToken: auth_token,
 				})
 			);
+			dispatch(getUserPokemon(decode.userId));
 		}
 	}, [user.access]);
 

@@ -90,7 +90,7 @@ function Home() {
 
 				{loading && <LoadingPage />}
 
-				{pokemonHome.data.length ? (
+				{!loading && pokemonHome.data.length ? (
 					<>
 						<Cards data={pokemonHome.data} />
 

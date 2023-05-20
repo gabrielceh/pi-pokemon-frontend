@@ -74,6 +74,7 @@ function LoginForm() {
 					error={errors.email}
 					handleInput={handleInputChange}
 				/>
+
 				<InputForm
 					label='Password'
 					type='password'

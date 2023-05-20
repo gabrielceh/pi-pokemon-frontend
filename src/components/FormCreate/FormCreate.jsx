@@ -7,12 +7,13 @@ import { createUserPokemon, resetSuccessPokemonUser } from '../../redux/actions/
 import { getUrlFromImage } from '../../utils/getUrlFromImage';
 import { getImageToShow } from '../../utils/showImage';
 import { imageTypes, validateCreateForm } from '../../utils/validateForms';
-import { InputGroup } from '../Inputs/Input.styled';
+import { Div, InputGroup } from '../Inputs/Input.styled';
 import InputImage from '../Inputs/InputImage';
 import MultipleSelect from '../Inputs/MultipleSelect';
 import { ButtonForm } from '../../styled/Button.styled';
 import { Form } from '../../styled/Form.styled';
 import InputForm from '../Inputs/InputForm';
+import Select from '../Inputs/Select';
 
 const initialForm = {
 	name: '',
@@ -24,12 +25,14 @@ const initialForm = {
 	speed: '1',
 	weight: '1',
 	height: '1',
-	types: [],
+	type: '',
+	type_2: '',
 };
 function FormCreate() {
 	const [form, setForm] = useState(initialForm);
 	const [base64ToShow, setBase64ToShow] = useState(null);
 	const [errors, setErrors] = useState({});
+	const [showSecondType, setShowSecondType] = useState(false);
 	const formImage = document.getElementById('formImage');
 	const navigate = useNavigate();
 
@@ -73,36 +76,36 @@ function FormCreate() {
 		);
 	};
 
-	const handleMultipleSelect = (event) => {
-		const options = event.target.options;
-		const value = [];
+	// const handleMultipleSelect = (event) => {
+	// 	const options = event.target.options;
+	// 	const value = [];
 
-		for (let i = 0; i < options.length; i++) {
-			if (value.length > 2) {
-				setErrors(
-					validateCreateForm({
-						...form,
-						types: [...value],
-					})
-				);
-				return;
-			}
-			if (options[i].selected) {
-				const v = parseInt(options[i].value);
-				value.push(v);
-			}
-		}
-		setForm({
-			...form,
-			types: value,
-		});
-		setErrors(
-			validateCreateForm({
-				...form,
-				types: [...value],
-			})
-		);
-	};
+	// 	for (let i = 0; i < options.length; i++) {
+	// 		if (value.length > 2) {
+	// 			setErrors(
+	// 				validateCreateForm({
+	// 					...form,
+	// 					types: [...value],
+	// 				})
+	// 			);
+	// 			return;
+	// 		}
+	// 		if (options[i].selected) {
+	// 			const v = parseInt(options[i].value);
+	// 			value.push(v);
+	// 		}
+	// 	}
+	// 	setForm({
+	// 		...form,
+	// 		types: value,
+	// 	});
+	// 	setErrors(
+	// 		validateCreateForm({
+	// 			...form,
+	// 			types: [...value],
+	// 		})
+	// 	);
+	// };
 
 	const handleImageChange = async (event) => {
 		if (imageTypes(event.target.files[0].type) === false) {
@@ -131,6 +134,17 @@ function FormCreate() {
 		setBase64ToShow(null);
 	};
 
+	const handleShowSecondType = (event) => {
+		event.preventDefault();
+		if (showSecondType) {
+			setForm({
+				...form,
+				type_2: '',
+			});
+		}
+		setShowSecondType(!showSecondType);
+	};
+
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
@@ -143,7 +157,13 @@ function FormCreate() {
 			getUrl = await getUrlFromImage(base64ToShow);
 		}
 
-		dispatch(createUserPokemon({ ...form, image: getUrl }));
+		const types = [];
+		types.push(+form.type);
+		if (form.type_2) {
+			types.push(+form.type_2);
+		}
+
+		dispatch(createUserPokemon({ ...form, image: getUrl, types: types }));
 	};
 
 	return (
@@ -263,14 +283,32 @@ function FormCreate() {
 			</InputGroup>
 
 			{typesPokemon.length && (
-				<MultipleSelect
-					label='My Pokémon types'
-					name='types'
-					defaultValue={form.types}
-					onchange={handleMultipleSelect}
-					data={typesPokemon}
-					error={errors.types}
-				/>
+				<Div>
+					<Select
+						label='My Pokémon type'
+						name='type'
+						defaultValue={form.type}
+						onchange={handleInputChange}
+						data={typesPokemon}
+						error={errors.type}
+					/>
+					{showSecondType && (
+						<Select
+							label='My Pokémon second type'
+							name='type_2'
+							defaultValue={form.type_2}
+							onchange={handleInputChange}
+							data={typesPokemon}
+							error={errors.type_2}
+						/>
+					)}
+					<ButtonForm
+						className='create'
+						type='button'
+						onClick={handleShowSecondType}>
+						{showSecondType ? '-' : '+'}
+					</ButtonForm>
+				</Div>
 			)}
 
 			<ButtonForm

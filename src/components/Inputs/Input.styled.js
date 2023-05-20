@@ -34,6 +34,33 @@ export const Label = styled.label`
 	letter-spacing: 0.1rem;
 `;
 
+export const PasswordCont = styled.div`
+	display: flex;
+	gap: 1rem;
+	justify-content: space-between;
+`;
+
+export const BtnShowPass = styled.button`
+	cursor: pointer;
+	background-color: transparent;
+	border: ${({ theme }) => `2px solid ${theme.colors.darkBlue['400']}`};
+	border-radius: 10px;
+	transition: background-color 0.3s ease-in-out;
+
+	& svg {
+		stroke: ${({ theme }) => theme.colors.darkBlue['400']};
+		transition: stroke 0.3s ease-in-out;
+	}
+
+	&:hover {
+		background-color: ${({ theme }) => theme.colors.darkBlue['400']};
+	}
+
+	&:hover svg {
+		stroke: ${({ theme }) => theme.colors.darkBlue['50']};
+	}
+`;
+
 export const Input = styled.input`
 	width: 100%;
 	padding: 0.7rem 0.5rem;
@@ -119,4 +146,23 @@ export const MultiSelect = styled.select`
 		outline: none;
 		border: ${({ theme }) => `2px solid ${theme.colors.darkBlue['600']}`};
 	}
+`;
+
+export const SelectInput = styled.select`
+	padding: 0.2rem 1rem;
+	font-size: ${({ theme }) => theme.fontSize.lg};
+	border: ${({ theme }) => `2px solid ${theme.colors.darkBlue['300']}`};
+	border-radius: 5px;
+	background-color: ${({ theme }) => theme.body};
+	color: ${({ theme }) => theme.text};
+	transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, border 0.3s ease-in-out;
+
+	&:focus {
+		outline: none;
+		border: ${({ theme }) => `2px solid ${theme.colors.darkBlue['600']}`};
+	}
+`;
+
+export const Div = styled.div`
+	margin-bottom: 1rem;
 `;

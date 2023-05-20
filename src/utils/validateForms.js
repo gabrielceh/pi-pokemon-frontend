@@ -1,6 +1,6 @@
 const EMAIL_REGEX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 const PASSWORD_REGEX = /^(?=.*[A-Z])(?=.*\d)(?=.*[*_\-.#$])[A-Za-z\d*_\-.#$]{8,16}$/;
-const NAME_REGEX = /^[a-zA-Z0-9]+$/;
+const NAME_REGEX = /^[a-zA-Z][a-zA-Z0-9_\-]*[a-zA-Z0-9]$/;
 
 const imageTypes = (type) => {
 	let types = {
@@ -56,7 +56,7 @@ const validateCreateForm = (form) => {
 
 	if (!form.name.trim()) errors.name = 'Enter a name';
 	else if (!NAME_REGEX.test(form.name))
-		errors.name = 'Name must only contain alphanumeric characters';
+		errors.name = 'Name must only contain alphanumeric characters, midscore and underscore';
 
 	if (form.image && imageTypes(form.image.type) === false)
 		errors.image = 'Invalid format. Only: .png, .jpg, .svg, .webp';
@@ -98,8 +98,10 @@ const validateCreateForm = (form) => {
 	else if ((form.height && +form.height < 0.01) || +form.height > 999)
 		errors.height = 'Height must be a number between 0.01 and 999';
 
-	if (!form.types.length) errors.types = 'Please, choose a type';
-	else if (form.types.length > 2) errors.types = 'Max 2 types';
+	if (!form.type) errors.type = 'Please, choose a type';
+	else if (isNaN(form.type)) errors.type = 'Type not valid';
+
+	if (form.type_2 && isNaN(form.type_2)) errors.type_2 = 'Second type not valid';
 
 	return errors;
 };
@@ -109,7 +111,7 @@ const validateEdit = (form) => {
 
 	if (!form.name.trim()) errors.name = 'Enter a name';
 	else if (form.name && !NAME_REGEX.test(form.name))
-		errors.name = 'Name must only contain alphanumeric characters';
+		errors.name = 'Name must only contain alphanumeric characters, midscore and underscore';
 
 	if (!form.hp) errors.hp = 'Enter hp';
 	else if (form.hp && isNaN(form.hp)) errors.hp = 'Hp must be a number';
@@ -151,8 +153,10 @@ const validateEdit = (form) => {
 	else if ((form.height && +form.height < 0.01) || +form.height > 999)
 		errors.height = 'Height must be a number between 0.01 and 999';
 
-	if (form.types && !form.types.length) errors.types = 'Please, choose a type';
-	else if (form.types.length > 2) errors.types = 'Max 2 types';
+	if (!form.type) errors.type = 'Please, choose a type';
+	else if (isNaN(form.type)) errors.type = 'Type not valid';
+
+	if (form.type_2 && isNaN(form.type_2)) errors.type_2 = 'Second type not valid';
 
 	return errors;
 };
