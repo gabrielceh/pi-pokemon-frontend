@@ -97,6 +97,7 @@ function About() {
 									<a
 										key={social.label}
 										href={social.href}
+										target='_blank'
 										rel='noreferrer'>
 										<ImageTool>{social.icon()}</ImageTool>
 									</a>
