@@ -19,11 +19,18 @@ export const ImgContainer = styled.section`
 
 	& img {
 		width: 100%;
-		min-width: 270px;
-		max-width: 400px;
+		min-width: 150px;
+		max-width: 300px;
 		height: auto;
 		border-radius: 50%;
 		filter: ${({ theme }) => `drop-shadow(6px 6px 3px ${theme.pokemonColors['dark'].dark})`};
+
+		@media (${({ theme }) => theme.screenSize.tablet}) {
+			width: 100%;
+			min-width: 270px;
+			max-width: 400px;
+			height: auto;
+		}
 	}
 `;
 
@@ -38,11 +45,14 @@ export const InfoSection = styled.section`
 	}
 `;
 
-export const NameSection = styled.h1`
+export const Name = styled.h1`
 	font-size: ${({ theme }) => theme.fontSize.xl_3};
 	letter-spacing: 0.2rem;
 	font-weight: 800;
 	@media (${({ theme }) => theme.screenSize.tablet}) {
+		font-size: ${({ theme }) => theme.fontSize.xl_4};
+	}
+	@media (${({ theme }) => theme.screenSize.laptop}) {
 		font-size: ${({ theme }) => theme.fontSize.xl_5};
 	}
 	&::selection {
@@ -51,8 +61,8 @@ export const NameSection = styled.h1`
 	}
 `;
 
-export const UserNamoMore = styled.span`
-	font-size: ${({ theme }) => theme.fontSize.xl};
+export const NameSpan = styled.span`
+	font-size: ${({ theme }) => theme.fontSize.lg};
 
 	&::selection {
 		color: ${({ theme }) => theme.pokemonColors['dark'].light};
@@ -60,6 +70,9 @@ export const UserNamoMore = styled.span`
 	}
 
 	@media (${({ theme }) => theme.screenSize.tablet}) {
+		font-size: ${({ theme }) => theme.fontSize.xl};
+	}
+	@media (${({ theme }) => theme.screenSize.laptop}) {
 		font-size: ${({ theme }) => theme.fontSize.xl_2};
 	}
 `;
@@ -112,13 +125,10 @@ export const Text = styled.p`
 		color: ${({ theme }) => theme.pokemonColors['dark'].light};
 		background-color: ${({ theme }) => theme.pokemonColors['dark'].dark};
 	}
-`;
 
-export const ImagesTypesCont = styled.div`
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
-	gap: 2rem;
+	@media (${({ theme }) => theme.screenSize.tablet}) {
+		width: 70%;
+	}
 `;
 
 export const ImageContainer = styled.div`
@@ -139,14 +149,8 @@ export const ImageTool = styled.div`
 		width: 2.5rem;
 		height: 2.5rem;
 		padding: 0;
+		stroke: ${({ theme }) => theme.pokemonColors['dark'].dark};
 	}
-`;
-
-export const ImageTypeCont = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
 `;
 
 export const ImageType = styled.img`
@@ -156,31 +160,16 @@ export const ImageType = styled.img`
 	}
 `;
 
-export const TypeName = styled.p`
-	color: ${({ theme }) => theme.pokemonColors['dark'].medium};
-	font-weight: 500;
-
-	&::selection {
-		color: ${({ theme }) => theme.pokemonColors['dark'].light};
-		background-color: ${({ theme }) => theme.pokemonColors['dark'].dark};
-	}
-`;
-
-export const InfoLabel = styled.p`
-	text-align: right;
-	margin: 0.2rem auto;
-
-	&::selection {
-		color: ${({ theme }) => theme.pokemonColors['dark'].light};
-		background-color: ${({ theme }) => theme.pokemonColors['dark'].dark};
+export const LinkSocial = styled.a`
+	& svg {
+		width: 3rem;
+		height: 3rem;
+		stroke: ${({ theme }) => theme.pokemonColors['dark'].medium};
+		transition: stroke 0.3s ease-in-out, scale 0.3s ease-in-out;
 	}
 
-	& span::selection {
-		color: ${({ theme }) => theme.pokemonColors['dark'].light};
-		background-color: ${({ theme }) => theme.pokemonColors['dark'].dark};
-	}
-
-	@media (${({ theme }) => theme.screenSize.tablet}) {
-		text-align: left;
+	&:hover svg {
+		scale: 1.1;
+		stroke: ${({ theme }) => theme.pokemonColors['dark'].dark};
 	}
 `;
