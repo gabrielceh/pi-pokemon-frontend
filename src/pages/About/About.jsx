@@ -11,16 +11,15 @@ import {
 	LabelArticle,
 	NameSection,
 	Text,
-	TypeName,
 	UserNamoMore,
 } from './About.styled';
 import aboutImg from '../../assets/img/about_main_picture.jpg';
 import LinkedinIcon from '../../components/Icons/LinkedinIcon';
 import InstagramIcon from '../../components/Icons/InstagramIcon';
 import ReactIcon from '../../components/Icons/ReactIcon';
-import TailwindIcon from '../../../../rick_and_morty/client/src/components/icons/TailwindICon';
+import TailwindIcon from '../../components/Icons/TailwindIcon';
 import NodeICon from '../../components/Icons/NodeICon';
-import NextJsICon from '../../../../rick_and_morty/client/src/components/icons/NextJSIcon';
+import NextJsICon from '../../components/Icons/NextIcon';
 import MongoICon from '../../components/Icons/MongoICon';
 
 function About() {
