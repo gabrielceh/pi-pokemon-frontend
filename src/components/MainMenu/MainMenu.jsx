@@ -16,6 +16,7 @@ import HamburgerMenu from '../Icons/HamburgerMenu';
 import { useContext } from 'react';
 import { DarkModeContext } from '../../context/DarkModeContext';
 import { useModal } from '../../hooks/useModal';
+import UserCodeIcon from '../Icons/UserCodeIcon';
 
 function MainMenu() {
 	const { darkMode } = useContext(DarkModeContext);
@@ -77,6 +78,13 @@ function MainMenu() {
 						id='config-menu'
 						darkMode={darkMode}>
 						<BtnDark />
+						<Link
+							to={ROUTES_NAMES.ABOUT}
+							title='About'>
+							<ContSVG>
+								<UserCodeIcon />
+							</ContSVG>
+						</Link>
 						{!user.access && (
 							<>
 								<Link

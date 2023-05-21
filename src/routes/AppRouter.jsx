@@ -13,6 +13,7 @@ import PublicRoutes from './PublicRoutes';
 import GeneralRoutes from './GeneralRoutes';
 import ProtectedRouted from './ProtectedRouted';
 import MainLayout from '../components/MainLayout/MainLayout';
+import About from '../pages/About/About';
 
 function AppRouter() {
 	return (
@@ -44,6 +45,10 @@ function AppRouter() {
 				<Route
 					path={`${ROUTES_NAMES.DETAIL}/:id`}
 					element={<Detail />}
+				/>
+				<Route
+					path={ROUTES_NAMES.ABOUT}
+					element={<About />}
 				/>
 			</Route>
 

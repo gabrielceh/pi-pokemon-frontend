@@ -17,13 +17,15 @@ function MainLayout({ children }) {
 		<Main>
 			<MainMenu />
 			<PageContainer>
-				{!location.pathname.includes('/detail') && (
+				{!location.pathname.includes('/detail') && !location.pathname.includes('/about') ? (
 					<ContainerStyled>
 						<MainHeader darkMode={darkMode}>
 							<PokemonLogo />
 							{user.user && <h4>Hi, {user.user.userName}!</h4>}
 						</MainHeader>
 					</ContainerStyled>
+				) : (
+					''
 				)}
 				{children}
 			</PageContainer>
