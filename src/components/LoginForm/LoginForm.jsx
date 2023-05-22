@@ -67,8 +67,8 @@ function LoginForm() {
 				action=''
 				onSubmit={handleSubmit}>
 				<InputForm
-					label='Email'
-					type='email'
+					label='Email or user name'
+					type='text'
 					name='email'
 					value={form.email}
 					error={errors.email}

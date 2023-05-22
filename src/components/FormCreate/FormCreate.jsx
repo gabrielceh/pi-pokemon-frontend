@@ -9,7 +9,6 @@ import { getImageToShow } from '../../utils/showImage';
 import { imageTypes, validateCreateForm } from '../../utils/validateForms';
 import { Div, InputGroup } from '../Inputs/Input.styled';
 import InputImage from '../Inputs/InputImage';
-import MultipleSelect from '../Inputs/MultipleSelect';
 import { ButtonForm } from '../../styled/Button.styled';
 import { Form } from '../../styled/Form.styled';
 import InputForm from '../Inputs/InputForm';
@@ -75,37 +74,6 @@ function FormCreate() {
 			})
 		);
 	};
-
-	// const handleMultipleSelect = (event) => {
-	// 	const options = event.target.options;
-	// 	const value = [];
-
-	// 	for (let i = 0; i < options.length; i++) {
-	// 		if (value.length > 2) {
-	// 			setErrors(
-	// 				validateCreateForm({
-	// 					...form,
-	// 					types: [...value],
-	// 				})
-	// 			);
-	// 			return;
-	// 		}
-	// 		if (options[i].selected) {
-	// 			const v = parseInt(options[i].value);
-	// 			value.push(v);
-	// 		}
-	// 	}
-	// 	setForm({
-	// 		...form,
-	// 		types: value,
-	// 	});
-	// 	setErrors(
-	// 		validateCreateForm({
-	// 			...form,
-	// 			types: [...value],
-	// 		})
-	// 	);
-	// };
 
 	const handleImageChange = async (event) => {
 		if (imageTypes(event.target.files[0].type) === false) {

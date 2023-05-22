@@ -16,9 +16,9 @@ const imageTypes = (type) => {
 const validateLoginForm = (form) => {
 	const errors = {};
 
-	if (!form.email.trim()) errors.email = 'Enter a email';
-	else if (!EMAIL_REGEX.test(form.email)) errors.email = 'Enter a valid Email';
-	else if (form.email.length > 35) errors.email = "Email shouldn't have more than 35 characters";
+	if (!form.email.trim()) errors.email = 'Enter a email or user name';
+	// else if (!EMAIL_REGEX.test(form.email)) errors.email = 'Enter a valid Email';
+	// else if (form.email.length > 35) errors.email = "Email shouldn't have more than 35 characters";
 
 	if (!form.password.trim()) errors.password = 'Enter a password';
 	else if (!PASSWORD_REGEX.test(form.password))
