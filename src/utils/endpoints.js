@@ -1,7 +1,7 @@
 export const base =
 	import.meta.env.VITE_ENVIROMENT === 'development'
 		? 'http://localhost:3001/pokemon-api'
-		: 'https://pi-pokemon-backend-production.up.railway.app/pokemon-api';
+		: 'https://pi-pokemon-d86i.onrender.com/pokemon-api';
 
 export const endpoints = {
 	pokemon: `pokemon`,
