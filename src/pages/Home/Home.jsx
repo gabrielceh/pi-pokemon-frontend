@@ -107,9 +107,11 @@ function Home() {
 						/>
 					</>
 				) : (
-					<MessageContainer>
-						<h2>No Results</h2>
-					</MessageContainer>
+					!loading && (
+						<MessageContainer>
+							<h2>No Results</h2>
+						</MessageContainer>
+					)
 				)}
 
 				<MessageContainer>

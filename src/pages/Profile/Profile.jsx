@@ -63,7 +63,7 @@ function Profile() {
 						)}
 					</>
 				) : (
-					<h2>No Pokemon yet</h2>
+					!loading && <h2>No Pokemon yet</h2>
 				)}
 			</ContainerStyled>
 		</ContainerPage>
