@@ -102,6 +102,8 @@ const validateCreateForm = (form) => {
 	else if (isNaN(form.type)) errors.type = 'Type not valid';
 
 	if (form.type_2 && isNaN(form.type_2)) errors.type_2 = 'Second type not valid';
+	else if (form.type_2 === form.type)
+		errors.type_2 = 'Second type should not be equal to the first type';
 
 	return errors;
 };
@@ -157,6 +159,8 @@ const validateEdit = (form) => {
 	else if (isNaN(form.type)) errors.type = 'Type not valid';
 
 	if (form.type_2 && isNaN(form.type_2)) errors.type_2 = 'Second type not valid';
+	else if (form.type_2 === form.type)
+		errors.type_2 = 'Second type should not be equal to the first type';
 
 	return errors;
 };
